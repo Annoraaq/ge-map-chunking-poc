@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "declaration": true,
+    "allowJs": false,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "lib": ["ES2019", "dom"]
+  },
+  "include": ["**/*.ts"],
+  "exclude": [
+    "./dist/**/*"
+  ]
+}
