@@ -61,9 +61,7 @@ export class MainScene extends Phaser.Scene {
   private initGridEngine(
     x: number,
     y: number,
-    tilemap: Phaser.Tilemaps.Tilemap,
-    movementProgress = 0,
-    facingDirection = Direction.DOWN
+    tilemap: Phaser.Tilemaps.Tilemap
   ): void {
     this.initGridEngine$.next();
     const gridEngineConfig = {
@@ -77,9 +75,17 @@ export class MainScene extends Phaser.Scene {
       ],
     };
 
+    const oldState = this.ge.getState()[0];
     this.ge.create(tilemap, gridEngineConfig);
-    this.ge.setMovementProgress("player", movementProgress);
-    this.ge.turnTowards("player", facingDirection);
+    if (oldState) {
+      this.ge.setState({
+        characters: [
+          {
+            ...oldState,
+          },
+        ],
+      });
+    }
 
     this.ge
       .positionChangeFinished()
@@ -93,9 +99,7 @@ export class MainScene extends Phaser.Scene {
           this.initGridEngine(
             newChunkData.newXPos,
             newChunkData.newYPos,
-            newTilemap,
-            this.ge.getMovementProgress("player"),
-            this.ge.getFacingDirection("player")
+            newTilemap
           );
         }
       });
