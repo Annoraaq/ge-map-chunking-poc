@@ -34,7 +34,7 @@
   "homepage": "https://github.com/Annoraaq/woodlands#readme",
   "keywords": [],
   "dependencies": {
-    "grid-engine": "file:../grid-engine",
+    "grid-engine": "~2.39.0",
     "phaser": "^3.60.0",
     "rxjs": "^7.5.6"
   }
